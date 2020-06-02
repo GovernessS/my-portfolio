@@ -5,14 +5,91 @@
     <title>My Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
-  </head>
-  <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+  <style>
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a class="active" href="#home">Home</a></li>
+  <li><a href="#about">About</a></li>
+  <li><a href="#current">Work History</a></li>
+  <li><a href="#connect">Let's Connect!</a></li>
+</ul>
+
+    <div id="name">
+      <h1>Governess Simpson</h1>
     </div>
+
+<div id="image1">
+<img src="/images/simpson_headshot.jpg" style="margin-right:150px">
+</div>
+
+<div id="image2">
+<img src="/images/simpson_headshot.jpg" style="margin-top:350px"; "margin-right:150px">
+</div>
+
+    <div id="content">
+      <p style="font-size:30px">
+        I am a rising junior at the University of Minnesota, majoring in Industrial and Systems Engineering with a minor in 
+         Computer Science! This summer, I will be a Program Manager intern at Microsoft. I aspire to become a Product Manager
+         (Technical or Associate).</p>
+      <button onclick="addRandomGreeting()">Hello</button>
+
+      <div id="greeting-container"></div>
+
+    </div>
+
+        <div id="content2">
+      <p style="font-size:30px">
+        I am a rising junior at the University of Minnesota, majoring in Industrial and Systems Engineering with a minor in 
+         Computer Science! This summer, I will be a Program Manager intern at Microsoft. I aspire to become a Product Manager
+         (Technical or Associate).</p>
+      <button onclick="addRandomGreeting()">Hello</button>
+
+      <div id="greeting-container"></div>
+
+    </div>
+
+    <div id="letsconnect">
+      <p style="font-size:30px">
+        Linkedin:
+        Github:
+        Resume:</p>
+      <button onclick="addRandomGreeting()">Hello</button>
+
+      <div id="greeting-container"></div>
+
+    </div>
+
   </body>
 </html>
