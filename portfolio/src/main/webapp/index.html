@@ -8,11 +8,11 @@
   <style>
 
 ul {
+  background-color: #333;
   list-style-type: none;
   margin: 0;
-  padding: 0;
   overflow: hidden;
-  background-color: #333;
+  padding: 0;
 }
 
 li {
@@ -20,10 +20,10 @@ li {
 }
 
 li a {
-  display: block;
   color: white;
-  text-align: center;
+  display: block;
   padding: 14px 16px;
+  text-align: center;
   text-decoration: none;
 }
 
@@ -40,14 +40,18 @@ li a:hover:not(.active) {
 <body>
 
 <ul>
-  <li><a class="active" href="#home"; href="./index.html">Home</a></li>
-  <li><a href="#about"; href="./about.html">About</a></li>
-  <li><a href="#experience"; href="./experience.html">Experience</a></li>
-</ul>
+  <div id="homepage">
+    <li><a class="active" href="./index.html">Home</a></li>
+  </div>
 
-<a href="./index.html">Home Page</a>
-<a href="./about.html">About Me</a>
-<a href="./experience.html">Experiences</a>
+   <div id="about">
+    <li><a href="./about.html">About Me</a></li>
+   </div>
+
+   <div id="experience">
+    <li><a href="./experience.html">Experience</a></li>   
+   </div>
+</ul>
 
 
     <div id="name">
