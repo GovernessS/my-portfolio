@@ -4,6 +4,34 @@
   width: 300px;
 }
 
+.nav_bar {
+  background-color: #333;
+  list-style-type: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+.nav_item {
+  float: left;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+
+.nav_item a:hover:not(.active) {
+  background-color: #111;
+}
+
+.nav_item a {
+  color: white;
+  display: block;
+  padding: 14px 16px;
+  text-align: center;
+  text-decoration: none;
+}
+
 #image1 {
   display: block;
   float: left;
@@ -32,6 +60,10 @@
   margin-right: 450px;
   margin-top: 275px;
   text-align: justify;
+}
+
+p.intro {
+    font-size:30px;
 }
 
 #letsconnect {

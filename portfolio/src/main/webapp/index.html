@@ -5,54 +5,23 @@
     <title>My Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
-  <style>
-
-ul {
-  background-color: #333;
-  list-style-type: none;
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  color: white;
-  display: block;
-  padding: 14px 16px;
-  text-align: center;
-  text-decoration: none;
-}
-
-li a:hover:not(.active) {
-  background-color: #111;
-}
-
-.active {
-  background-color: #4CAF50;
-}
-
-</style>
 </head>
+
 <body>
 
-<ul>
+<ul class="nav_bar">
   <div id="homepage">
-    <li><a class="active" href="./index.html">Home</a></li>
+    <li class="nav_item"><a class="active" href="./index.html">Home</a></li>
   </div>
 
    <div id="about">
-    <li><a href="./about.html">About Me</a></li>
+    <li class="nav_item"><a href="./about.html">About Me</a></li>
    </div>
 
    <div id="experience">
-    <li><a href="./experience.html">Experience</a></li>   
+    <li class="nav_item"><a href="./experience.html">Experience</a></li>   
    </div>
 </ul>
-
 
     <div id="name">
       <h1>Governess Simpson</h1>
@@ -67,7 +36,7 @@ li a:hover:not(.active) {
     </div>
 
     <div id="content">
-      <p style="font-size:30px">
+      <p class="intro">
         I am a rising junior at the University of Minnesota, majoring in Industrial and Systems Engineering with a minor in 
          Computer Science! This summer, I will be a Program Manager intern at Microsoft. I aspire to become a Product Manager
          (Technical or Associate).</p>
@@ -78,7 +47,7 @@ li a:hover:not(.active) {
     </div>
 
         <div id="content2">
-      <p style="font-size:30px">
+      <p class="intro">
         I am a rising junior at the University of Minnesota, majoring in Industrial and Systems Engineering with a minor in 
          Computer Science! This summer, I will be a Program Manager intern at Microsoft. I aspire to become a Product Manager
          (Technical or Associate).</p>
@@ -89,7 +58,7 @@ li a:hover:not(.active) {
     </div>
 
     <div id="letsconnect">
-      <p style="font-size:30px">
+      <p class="intro">
         Linkedin:
         Github:
         Resume:</p>
