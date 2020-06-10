@@ -26,3 +26,15 @@ function addRandomGreeting() {
   const greetingContainer = document.getElementById('greeting-container');
   greetingContainer.innerText = greeting;
 }
+
+async function getMessageUsingAsyncAwait() {
+  const response = await fetch('/data');
+  const phrase = await response.text();
+  document.getElementById('phrase-container').innerText = phrase;
+}
+
+/*function getMessageUsingArrowFunctions() {
+  fetch('/data').then(response => response.text()).then((quote) => {
+    document.getElementById('quote-container').innerText = quote;
+  });
+}*/
