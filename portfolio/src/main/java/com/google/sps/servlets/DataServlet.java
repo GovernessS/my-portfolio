@@ -14,6 +14,8 @@
 
 package com.google.sps.servlets;
 
+import com.google.gson.Gson;
+import java.util.ArrayList;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,9 +26,35 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+  ArrayList<String> fun_facts = new ArrayList<String>();
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("Lifelong learner and engineer.");
+    fun_facts.add("I used to read the dictionary for fun!");
+    fun_facts.add("I considered going to the University of Madison (Better Dead Than Red)");
+    fun_facts.add("I spent over $100 on a planner in the 10th grade!");
+
+    String json = convertToJson(fun_facts);
+
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
   }
+
+ /**
+   * Converts a ServerStats instance into a JSON string using manual String concatentation.
+   */
+  private String convertToJson(ArrayList<String> fun_facts) {
+    String json = "{";
+    json += "\"factOne\": ";
+    json += "\"" + fun_facts.get(0) + "\"";
+    json += ", ";
+    json += "\"factTwo\": ";
+    json += "\"" + fun_facts.get(1) + "\"";
+    json += ", ";
+    json += "\"factThree\": ";
+    json += "\"" + fun_facts.get(2) + "\"";
+    json += "}";
+    return json;
+  }
+
 }
