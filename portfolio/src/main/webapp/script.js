@@ -12,23 +12,3 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function getFacts() {
-  fetch('/data').then(response => response.json()).then((funFacts) => {
-    
-    const funFactsListElement = document.getElementById('facts-container');
-    funFactsListElement.innerHTML = '';
-    funFactsListElement.appendChild(
-        createListElement('Fact One: ' + funFacts.factOne));
-    funFactsListElement.appendChild(
-        createListElement('Fact Two: ' + funFacts.factTwo));
-    funFactsListElement.appendChild(
-        createListElement('Fact Three: ' + funFacts.factThree));
-  });
-}
-
-  /** Creates an <li> element containing text. */
-function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
-}

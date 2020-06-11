@@ -143,3 +143,10 @@ ol.roman-list {
   width: 200px;
 }
 
+#comments {
+  margin-left: 40%;
+  margin-right: 30%;
+  margin-top: 300px;
+  position: absolute;
+}
+

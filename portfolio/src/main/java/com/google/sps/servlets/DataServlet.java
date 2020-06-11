@@ -27,35 +27,38 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private ArrayList<String> funFacts = new ArrayList<String>();
+  private ArrayList<String> comments = new ArrayList<String>();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      funFacts.add("I used to read the dictionary for fun!");
-      funFacts.add("I considered going to the University of Madison (Better Dead Than Red)");
-      funFacts.add("I spent over $100 on a planner in the 10th grade!");
-
-    String json = convertToJson(funFacts);
-
-    response.setContentType("application/json;");
-    response.getWriter().println(json);
+    response.setContentType("text/html;");
+    response.getWriter().println(comments);
   }
 
- /**
-   * Converts a ServerStats instance into a JSON string using manual String concatentation.
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String text = getParameter(request, "text-input", "");
+    comments.add(text);
+
+    // Respond with the result.
+    response.setContentType("text/html;");
+    response.getWriter().println(comments);
+
+    response.sendRedirect("/index.html");
+  }
+
+
+  /**
+   * @return the request parameter, or the default value if the parameter
+   *         was not specified by the client
    */
-  private String convertToJson(ArrayList<String> funFacts) {
-    String json = "{";
-    json += "\"factOne\": ";
-    json += "\"" + funFacts.get(0) + "\"";
-    json += ", ";
-    json += "\"factTwo\": ";
-    json += "\"" + funFacts.get(1) + "\"";
-    json += ", ";
-    json += "\"factThree\": ";
-    json += "\"" + funFacts.get(2) + "\"";
-    json += "}";
-    return json;
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
   }
-
 }
