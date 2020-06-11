@@ -12,29 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
-function addRandomGreeting() {
-  const greetings =
-      ['Computer Science', 'Business', 'Design', 'Marketing'];
-
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
-}
-
-async function getMessageUsingAsyncAwait() {
-  const response = await fetch('/data');
-  const phrase = await response.text();
-  document.getElementById('phrase-container').innerText = phrase;
-}
-
-/*function getMessageUsingArrowFunctions() {
-  fetch('/data').then(response => response.text()).then((quote) => {
-    document.getElementById('quote-container').innerText = quote;
+function getFacts() {
+  fetch('/data').then(response => response.json()).then((funFacts) => {
+    
+    const funFactsListElement = document.getElementById('facts-container');
+    funFactsListElement.innerHTML = '';
+    funFactsListElement.appendChild(
+        createListElement('Fact One: ' + funFacts.factOne));
+    funFactsListElement.appendChild(
+        createListElement('Fact Two: ' + funFacts.factTwo));
+    funFactsListElement.appendChild(
+        createListElement('Fact Three: ' + funFacts.factThree));
   });
-}*/
+}
+
+  /** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
