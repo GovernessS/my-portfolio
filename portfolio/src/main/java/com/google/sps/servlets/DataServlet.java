@@ -14,7 +14,9 @@
 
 package com.google.sps.servlets;
 
-import com.google.gson.Gson;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import java.util.ArrayList;
 import java.util.*;
 import java.io.IOException;
@@ -27,20 +29,29 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private ArrayList<String> comments = new ArrayList<String>();
+  private List<String> comments = new ArrayList<String>();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("text/html;");
+
     response.getWriter().println(comments);
   }
-
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
     String text = getParameter(request, "text-input", "");
+    long timestamp = System.currentTimeMillis();
+
     comments.add(text);
+
+    Entity taskEntity = new Entity("Entry");
+    taskEntity.setProperty("Text", text);
+    taskEntity.setProperty("timestamp", timestamp);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(taskEntity);
 
     // Respond with the result.
     response.setContentType("text/html;");
@@ -48,7 +59,6 @@ public class DataServlet extends HttpServlet {
 
     response.sendRedirect("/index.html");
   }
-
 
   /**
    * @return the request parameter, or the default value if the parameter
