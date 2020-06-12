@@ -16,7 +16,6 @@ package com.google.sps.input;
 
 /** Will be used in the next PR (just setting it up!) */
 public final class Comments {
-
   private final long id;
   private final String title;
   private final long timestamp;
