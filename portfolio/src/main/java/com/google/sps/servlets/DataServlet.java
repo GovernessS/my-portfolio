@@ -43,12 +43,8 @@ public class DataServlet extends HttpServlet {
 
     comments.add(text);
 
-    Entity taskEntity = new Entity("pastComments");
-    taskEntity.setProperty("Text", text);
-    taskEntity.setProperty("timestamp", timestamp);
-
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(taskEntity);
+    // Send information to be written to Datastore
+    persistComments(text, timestamp);
 
     // Respond with the result.
     response.setContentType("text/html;");
@@ -59,20 +55,10 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query("pastComments").addSort("timestamp", SortDirection.DESCENDING);
-
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    PreparedQuery results = datastore.prepare(query);
-
+    Query query = new Query("UserComments").addSort("timestamp", SortDirection.DESCENDING);
     List<Comments> comments = new ArrayList<>();
-    for (Entity entity : results.asIterable()) {
-      long id = entity.getKey().getId();
-      String c = (String) entity.getProperty("Text");
-      long timestamp = (long) entity.getProperty("timestamp");
 
-      Comments comment = new Comments(id, c, timestamp);
-      comments.add(comment);
-    }
+    readComments(query, comments);
 
     Gson gson = new Gson();
 
@@ -90,5 +76,29 @@ public class DataServlet extends HttpServlet {
       return defaultValue;
     }
     return value;
+  }
+
+  private void persistComments(String text, long timestamp) {
+    Entity taskEntity = new Entity("UserComments");
+    taskEntity.setProperty("Text", text);
+    taskEntity.setProperty("timestamp", timestamp);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(taskEntity);
+  }
+
+  private List readComments(Query query, List<Comments> comments) {
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+    for (Entity entity : results.asIterable()) {
+      long id = entity.getKey().getId();
+      String message = (String) entity.getProperty("Text");
+      long timestamp = (long) entity.getProperty("timestamp");
+
+      Comments comment = new Comments(id, message, timestamp);
+      comments.add(comment);
+    }
+
+    return comments;
   }
 }

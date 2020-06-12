@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/** Fetches tasks from the server and adds them to the DOM. */
+/** Fetches comments from the server and adds them to the DOM. */
 function loadComments() {
   fetch('/input').then(response => response.json()).then((comments) => {
     const commentsListElement = document.getElementById('comments-list');
@@ -28,7 +28,7 @@ function createTaskElement(comment) {
   commentElement.className = 'comments';
 
   const titleElement = document.createElement('span');
-  titleElement.innerText = comment.entry;
+  titleElement.innerText = comment.text;
 
   commentElement.appendChild(titleElement);
   return commentElement;
