@@ -17,6 +17,11 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.gson.Gson;
+import com.google.sps.input.Comments;
 import java.io.IOException;
 import java.util.*;
 import java.util.ArrayList;
@@ -26,16 +31,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
+@WebServlet("/input")
 public class DataServlet extends HttpServlet {
   private List<String> comments = new ArrayList<String>();
-
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-
-    response.getWriter().println(comments);
-  }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -45,7 +43,7 @@ public class DataServlet extends HttpServlet {
 
     comments.add(text);
 
-    Entity taskEntity = new Entity("Entry");
+    Entity taskEntity = new Entity("pastComments");
     taskEntity.setProperty("Text", text);
     taskEntity.setProperty("timestamp", timestamp);
 
@@ -57,6 +55,29 @@ public class DataServlet extends HttpServlet {
     response.getWriter().println(comments);
 
     response.sendRedirect("/index.html");
+  }
+
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    Query query = new Query("pastComments").addSort("timestamp", SortDirection.DESCENDING);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+
+    List<Comments> comments = new ArrayList<>();
+    for (Entity entity : results.asIterable()) {
+      long id = entity.getKey().getId();
+      String c = (String) entity.getProperty("Text");
+      long timestamp = (long) entity.getProperty("timestamp");
+
+      Comments comment = new Comments(id, c, timestamp);
+      comments.add(comment);
+    }
+
+    Gson gson = new Gson();
+
+    response.setContentType("application/json;");
+    response.getWriter().println(gson.toJson(comments));
   }
 
   /**

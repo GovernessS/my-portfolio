@@ -14,15 +14,14 @@
 
 package com.google.sps.input;
 
-/** Will be used in the next PR (just setting it up!) */
 public final class Comments {
   private final long id;
-  private final String title;
+  private final String entry;
   private final long timestamp;
 
-  public Comments(long id, String title, long timestamp) {
+  public Comments(long id, String entry, long timestamp) {
     this.id = id;
-    this.title = title;
+    this.entry = entry;
     this.timestamp = timestamp;
   }
 }

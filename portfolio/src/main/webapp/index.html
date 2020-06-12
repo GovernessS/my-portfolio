@@ -7,7 +7,7 @@
     <script src="script.js"></script>
   </head>
 
-  <body>
+  <body onload="loadComments()">
 
     <ul class="nav_bar">
         <div id="homepage">
@@ -47,13 +47,14 @@
     </div>
 
     <div id="comments">
-        <form action="/data" method="POST">
+        <form method="POST" action="/input">
 
             <h3>Like the Page? Leave a comment on your thoughts!</h3>
             <textarea name="text-input">Sample Text Here</textarea>
 
             <input type="submit" />
         </form>
+        <ul id="comments-list"></ul>
     </div>
 
     <div id="linkedin">
