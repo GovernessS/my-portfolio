@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+
 /** Fetches comments from the server and adds them to the DOM. */
 function loadComments() {
   fetch('/input').then(response => response.json()).then((comments) => {
@@ -21,6 +22,23 @@ function loadComments() {
     })
   });
 }
+
+var map;
+function initMap() {
+  const map = new google.maps.Map(
+      document.getElementById('map'),
+      {center: {lat: 44.9740, lng: -93.2277}, zoom: 18});
+
+  const trexMarker = new google.maps.Marker({
+    position: {lat: 44.9740, lng: -93.2277},
+    map: map,
+    title: 'Go Gophers!'
+  });
+
+  const trexInfoWindow = new google.maps.InfoWindow({content: 'Go Gophers!'});
+  trexInfoWindow.open(map, trexMarker);
+}
+
 
 /** Creates an element that represents a task, including its delete button. */
 function createTaskElement(comment) {
