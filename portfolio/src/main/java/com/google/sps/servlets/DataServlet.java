@@ -23,8 +23,8 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
 import com.google.sps.input.Comments;
 import java.io.IOException;
-import java.util.*;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -56,14 +56,10 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("UserComments").addSort("timestamp", SortDirection.DESCENDING);
-    List<Comments> comments = new ArrayList<>();
-
-    readComments(query, comments);
-
     Gson gson = new Gson();
 
     response.setContentType("application/json;");
-    response.getWriter().println(gson.toJson(comments));
+    response.getWriter().println(gson.toJson(readComments(query)));
   }
 
   /**
@@ -87,7 +83,8 @@ public class DataServlet extends HttpServlet {
     datastore.put(taskEntity);
   }
 
-  private List readComments(Query query, List<Comments> comments) {
+  private List readComments(Query query) {
+    List<Comments> comments = new ArrayList<>();
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
     for (Entity entity : results.asIterable()) {

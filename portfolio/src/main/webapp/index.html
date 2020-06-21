@@ -7,7 +7,7 @@
     <script src="script.js"></script>
   </head>
 
-  <body onload="loadComments()">
+  <body onload="loadComments()" onload="initMap()">
 
     <ul class="nav_bar">
         <div id="homepage">
@@ -45,6 +45,10 @@
         <p class="intro">
             ... as well as my current internship and involvements!</p>
     </div>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWuSbFMs6GwYpV3ff5qR9vgnje34B7_Qw&callback=initMap"
+type="text/javascript"></script>
+    <div id="map"></div>
 
     <div id="comments">
         <form method="POST" action="/input">

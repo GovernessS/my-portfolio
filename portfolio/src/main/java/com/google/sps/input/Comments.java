@@ -14,7 +14,7 @@
 
 package com.google.sps.input;
 
-// Class that stores comment details
+/** Class that stores comment details */
 public final class Comments {
   private final long id;
   private final String text;

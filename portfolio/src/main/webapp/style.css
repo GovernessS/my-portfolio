@@ -150,3 +150,15 @@ ol.roman-list {
   position: relative;
 }
 
+#map {
+    border: thin solid black;
+    height: 100%;
+    margin-top: 600px;
+  }
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
