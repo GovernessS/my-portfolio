@@ -50,7 +50,7 @@ public class DataServlet extends HttpServlet {
     response.setContentType("text/html;");
     response.getWriter().println(comments);
 
-    response.sendRedirect("/index.html");
+    response.sendRedirect("/contact.html");
   }
 
   @Override

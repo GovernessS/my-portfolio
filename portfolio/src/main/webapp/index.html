@@ -1,73 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-  </head>
+    <head>
+        <meta charset="UTF-8">
+        <title>My Portfolio</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+    </head>
 
-  <body onload="loadComments()" onload="initMap()">
+    <body>
+        <img src="/images/simpson_headshot.jpg" id="myHeadshot">
 
-    <ul class="nav_bar">
-        <div id="homepage">
-            <li class="nav_item"><a class="active" href="./index.html">Home</a></li>
+        <section class="wrapper">
+            <h2 class="sentence">I'm a 
+                <div class="slidingVertical">
+                    <span>software engineer.</span>
+                    <span>black women in tech.</span>
+                    <span>student.</span>
+                    <span>lifelong learner.</span>
+                    <span>insert phrase here!</span>
+                </div>
+            </h2>
+        </section>
+      
+        <div id="mySidenav" class="sidenav">
+            <a href="./index.html" id="home">Home</a>
+            <a href="./about.html" id="about">About</a>
+            <a href="./experience.html" id="experience">Experience</a>
+            <a href="./projects.html" id="projects">Projects</a>
+            <a href="./contact.html" id="contact">Contact Me</a>
         </div>
 
-        <div id="about">
-            <li class="nav_item"><a href="./about.html">About Me</a></li>
-        </div>
+        <div id="firstname"></div>
 
-        <div id="experience">
-            <li class="nav_item"><a href="./experience.html">Experience</a></li>   
-        </div>
-    </ul>
+        <div id="lastname"></div>
 
-    <div id="name">
-      <h1>Governess Simpson</h1>
-    </div>
+        <p id="G">Governess</p>
+        <p id="S">Simpson</p>
 
-    <div id="image1">
-        <img src="/images/gov-lifts.png">
-    </div>
-
-    <div id="image2">
-        <img src="/images/gov-ceo.jpg">
-    </div>
-
-    <div id="content">
-        <p class="intro">
-            Learn more about myself, my education, interests, and passions ...</p>
-        <ul id="facts-container"></ul>
-    </div>
-
-    <div id="content2">
-        <p class="intro">
-            ... as well as my current internship and involvements!</p>
-    </div>
-
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWuSbFMs6GwYpV3ff5qR9vgnje34B7_Qw&callback=initMap"
-type="text/javascript"></script>
-    <div id="map"></div>
-
-    <div id="comments">
-        <form method="POST" action="/input">
-
-            <h3>Like the Page? Leave a comment on your thoughts!</h3>
-            <textarea name="text-input">Sample Text Here</textarea>
-
-            <input type="submit" />
-        </form>
-        <ul id="comments-list"></ul>
-    </div>
-
-    <div id="linkedin">
-        <a href="https://www.linkedin.com/in/governess-simpson/">
-        <img border="0" alt="https://www.linkedin.com/"
-         src="/images/linkedin-icon.png" width="100" height="100"></a></div>
-    <div id='github'>
-        <a href="https://github.com/GovernessS">
-       <img border="0" alt="https://github.com/"
-        src="/images/github-icon.png" width="100" height="100"></a></div>
-  </body>
+    </body>
 </html>
